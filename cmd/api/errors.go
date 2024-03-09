@@ -60,3 +60,8 @@ func (app *application) failedValidationResponse(
 ) {
 	app.errorResponse(w, r, http.StatusUnprocessableEntity, errors)
 }
+
+func (app *application) rateLimitExceededResponse(w http.ResponseWriter, r *http.Request) {
+	message := "rate limit exceeded"
+	app.errorResponse(w, r, http.StatusTooManyRequests, message)
+}
